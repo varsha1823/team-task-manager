@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Task - TaskHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a8a7f 0%, #20a39e 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .header h1 {
+            color: #1e3a5f;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #999;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #1e3a5f;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #1a8a7f;
+            box-shadow: 0 0 0 3px rgba(26, 138, 127, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            color: #333;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a8a7f 0%, #20a39e 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 138, 127, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 138, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1a8a7f;
+            border: 2px solid #1a8a7f;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+        }
+
+        .info-box {
+            background: #e8f5f4;
+            border-left: 4px solid #1a8a7f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .info-box strong {
+            color: #1a8a7f;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <div class="header">
+        <div class="header-icon">
+            <i class="fas fa-plus-circle"></i>
+        </div>
+        <div>
+            <h1>Create New Task</h1>
+            <p>Add a new task to your project</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Tip:</strong> Tasks should be specific and actionable. Assign them to team members for better tracking and accountability.
+    </div>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Task Title *</label>
+            <input type="text" id="title" name="title" placeholder="Enter task title (e.g., Design homepage mockup)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Task Description</label>
+            <textarea id="description" name="description" placeholder="Provide detailed description of what needs to be done..."></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="project_id">Select Project *</label>
+                <select id="project_id" name="project_id" required>
+                    <option value="">-- Select a Project --</option>
+                    {% for project in projects %}
+                        <option value="{{ project.id }}">{{ project.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="assigned_to">Assign To *</label>
+                <select id="assigned_to" name="assigned_to" required>
+                    <option value="">-- Select Team Member --</option>
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.name }} ({{ user.role }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="/dashboard" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check"></i> Create Task
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

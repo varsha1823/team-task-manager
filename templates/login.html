@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskHub - Professional Task Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=1200&fit=crop') 
+                        no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 420px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 48px;
+            color: #1a8a7f;
+            margin-bottom: 10px;
+        }
+
+        .logo h1 {
+            color: #1e3a5f;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #1e3a5f;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px 14px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1a8a7f;
+            box-shadow: 0 0 0 3px rgba(26, 138, 127, 0.1);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 14px;
+            top: 14px;
+            color: #1a8a7f;
+            font-size: 18px;
+        }
+
+        .eye-toggle {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            cursor: pointer;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .eye-toggle:hover {
+            color: #1a8a7f;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1a8a7f 0%, #20a39e 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(26, 138, 127, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 138, 127, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .remember-forgot a {
+            color: #1a8a7f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #1a8a7f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .demo-note {
+            background: #e8f5f4;
+            border-left: 4px solid #1a8a7f;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .demo-note strong {
+            color: #1a8a7f;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login-container">
+    <div class="logo">
+        <i class="fas fa-tasks"></i>
+        <h1>TaskHub</h1>
+        <p>Professional Task Management System</p>
+    </div>
+
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to your account to continue</p>
+
+    <div class="demo-note">
+        <strong>Demo Account:</strong> Use any email/password to test. System is open access for demo.
+    </div>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+            <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <i class="fas fa-eye eye-toggle" onclick="togglePassword()"></i>
+            </div>
+        </div>
+
+        <div class="remember-forgot">
+            <label style="display: flex; align-items: center; margin: 0; font-weight: 400;">
+                <input type="checkbox" style="width: 16px; height: 16px; margin-right: 6px;">
+                Remember me
+            </label>
+        </div>
+
+        <button type="submit"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+
+        <div class="signup-link">
+            Don't have an account? <a href="/signup">Create one now</a>
+        </div>
+    </form>
+</div>
+
+<script>
+function togglePassword() {
+    const input = document.getElementById('password');
+    const icon = document.querySelector('.eye-toggle');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>
+</body>
+</html>
